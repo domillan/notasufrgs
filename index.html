@@ -1,0 +1,160 @@
+<html>
+
+
+<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+
+<div style="text-align: center">
+<h5>Insira suas notas </h5><button id='rand' pys-onclick="rand"> 🔁 </button><button id='clr' pys-onclick="clr"> 🆕 </button>
+<form onsubmit="return false">
+<input id='fis' required min = '0' type="number" placeholder='Física' class="border flex-1 mr-3 border-gray-300 p-2 rounded">
+<input id='lit' required min = '0' type="number" placeholder='Literatura' class="border flex-1 mr-3 border-gray-300 p-2 rounded">
+<input id='lin' required min = '0' type="number" placeholder='Lingua Estrangeira' class="border flex-1 mr-3 border-gray-300 p-2 rounded">
+<input id='bio' required min = '0' type="number" placeholder='Biologia' class="border flex-1 mr-3 border-gray-300 p-2 rounded">
+<input id='qui' required min = '0' type="number" placeholder='Química' class="border flex-1 mr-3 border-gray-300 p-2 rounded">
+<input id='geo' required min = '0' type="number" placeholder='Geografia' class="border flex-1 mr-3 border-gray-300 p-2 rounded">
+<input id='his' required min = '0' type="number" placeholder='História' class="border flex-1 mr-3 border-gray-300 p-2 rounded">
+<input id='mat' required min = '0' type="number" placeholder='Matemática' class="border flex-1 mr-3 border-gray-300 p-2 rounded">
+<input id='por' required min = '0' type="number" placeholder='Português' class="border flex-1 mr-3 border-gray-300 p-2 rounded"><br>
+<button id='aa' class="p-2 text-white bg-blue-600 border border-blue-600 rounded" type="submit" pys-onclick="calcular"> Calcular </button>
+</form>
+</div>
+<div id='result' class='m-5 p-5'> </div>
+
+<py-script>
+result = Element("result").element;
+import random
+
+class curso(object):
+	def __init__ (self, curso, tupla):
+		self.curso = curso
+		self.tupla = tupla
+
+	def media(self, tupla):
+		self.media = 0
+		for i, x in enumerate(tupla):
+			try:
+				self.media += self.tupla[i]/float(tupla[i])
+			except:
+				self.media += self.tupla[i]/0.1
+		self.media = 15/self.media
+		self.media = int(self.media*100)/100.0
+		return self.media
+
+def rand(x):
+	Element("fis").element.value = random.randint(200, 800)
+	Element("lit").element.value = random.randint(200, 800)
+	Element("lin").element.value = random.randint(200, 800)
+	Element("bio").element.value = random.randint(200, 800)
+	Element("qui").element.value = random.randint(200, 800)
+	Element("geo").element.value = random.randint(200, 800)
+	Element("his").element.value = random.randint(200, 800)
+	Element("mat").element.value = random.randint(200, 800)
+	Element("por").element.value = random.randint(200, 800)
+
+
+def clr(x):
+	Element("fis").element.value = ''
+	Element("lit").element.value = ''
+	Element("lin").element.value = ''
+	Element("bio").element.value = ''
+	Element("qui").element.value = ''
+	Element("geo").element.value = ''
+	Element("his").element.value = ''
+	Element("mat").element.value = ''
+	Element("por").element.value = ''
+
+
+def calcular(x):
+	result.innerText='';
+	pesos = []
+	pesos.append(curso('Administração', (1, 1, 1, 1, 1, 2, 2, 3, 3)))
+	pesos.append(curso('Administração Pública e Social', (1, 1, 1, 1, 1, 2, 2, 3, 3)))
+	pesos.append(curso('Agronomia', (1, 1, 1, 3, 2, 1, 1, 2, 3)))
+	pesos.append(curso('Arquitetura e Urbanismo', (2, 1, 1, 1, 1, 1, 2, 3, 3)))
+	pesos.append(curso('Arquivologia', (1, 2, 2, 1, 1, 1, 3, 1, 3)))
+	pesos.append(curso('Artes Visuais', (1, 2, 2, 1, 1, 1, 3, 1, 3)))
+	pesos.append(curso('Bacharelado Interdisciplinar em Ciência e Tecnologia', (2, 1, 1, 1, 1, 2, 1, 3, 3)))
+	pesos.append(curso('Biblioteconomia', (1, 2, 2, 1, 1, 1, 3, 1, 3)))
+	pesos.append(curso('Biomedicina', (2, 1, 1, 2, 2, 1, 1, 2, 3)))
+	pesos.append(curso('Biotecnologia', (2, 1, 1, 2, 2, 1, 1, 2, 3)))
+	pesos.append(curso('Ciência da Computação', (2, 1, 2, 1, 1, 1, 1, 3, 3)))
+	pesos.append(curso('Ciências Biológicas', (2, 1, 1, 3, 2, 1, 1, 1, 3)))
+	pesos.append(curso('Ciências Econômicas', (1, 1, 1, 1, 1, 2, 2, 3, 3)))
+	pesos.append(curso('Ciências Sociais', (1, 2, 2, 1, 1, 1, 3, 1, 3)))
+	pesos.append(curso('Ciências Atuariais',  (1, 1, 2, 1, 1, 2, 1, 3, 3)))
+	pesos.append(curso('Ciências Contábeis',  (1, 1, 2, 1, 1, 1, 2, 3, 3)))
+	pesos.append(curso('Dança – Licenciatura', (1, 3, 1, 1, 1, 1, 3, 1, 3)))
+	pesos.append(curso('Design - Produto',(2, 1, 1, 1, 1, 1, 2, 3, 3)))
+	pesos.append(curso('Design - Visual',(2, 1, 1, 1, 1, 1, 2, 3, 3)))
+	pesos.append(curso('Direito', (1, 2, 2, 1, 1, 1, 3, 1, 3)))
+	pesos.append(curso('Educação Física',(2, 1, 1, 3, 2, 1, 1, 1, 3)))
+	pesos.append(curso('Enfermagem',(2, 1, 1, 3, 2, 1, 1, 1, 3)))
+	pesos.append(curso('Engenharia Ambiental',(2, 1, 1, 2, 2, 1, 1, 2, 3)))
+	pesos.append(curso('Engenharia Cartográfica',(2, 1, 1, 1, 1, 2, 1, 3, 3)))
+	pesos.append(curso('Engenharia Civil',(2, 1, 1, 1, 2, 1, 1, 3, 3)))
+	pesos.append(curso('Engenharia Elétrica',(2, 1, 1, 1, 2, 1, 1, 3, 3)))
+	pesos.append(curso('Engenharia Física',(3, 1, 1, 1, 2, 1, 1, 2, 3)))
+	pesos.append(curso('Engenharia Hídrica',(2, 1, 1, 1, 2, 1, 1, 3, 3)))
+	'''650 503 686 512 556 586 687 641 679'''
+	pesos.append(curso('Engenharia Mecânica',(2, 1, 1, 1, 2, 1, 1, 3, 3)))
+	pesos.append(curso('Engenharia Metalúrgica',(2, 1, 1, 1, 2, 1, 1, 3, 3)))
+	pesos.append(curso('Engenharia Química',(2, 1, 1, 1, 2, 1, 1, 3, 3)))
+	pesos.append(curso('Engenharia de Alimentos',(2, 1, 1, 1, 2, 1, 1, 3, 3)))
+	pesos.append(curso('Engenharia de Computação',(2, 1, 2, 1, 1, 1, 1, 3, 3)))
+	pesos.append(curso('Engenharia de Controle e Automação',(2, 1, 1, 1, 2, 1, 1, 3, 3)))
+	pesos.append(curso('Engenharia de Energia',(2, 1, 1, 1, 2, 1, 1, 3, 3)))
+	pesos.append(curso('Engenharia de Materiais',(2, 1, 1, 1, 3, 1, 1, 2, 3)))
+	pesos.append(curso('Engenharia de Minas',(2, 1, 1, 1, 2, 1, 1, 3, 3)))
+	pesos.append(curso('Engenharia de Produção',(2, 1, 1, 1, 2, 1, 1, 3, 3)))
+	pesos.append(curso('Estatística',(1, 1, 2, 1, 1, 2, 1, 3, 3)))
+	pesos.append(curso('Física',(3, 1, 1, 1, 1, 1, 1, 3, 3)))
+	pesos.append(curso('Farmácia',(1, 1, 1, 2, 3, 1, 1, 2, 3)))
+	pesos.append(curso('Filosofia',(1, 2, 2, 1, 1, 1, 2, 2, 3)))
+	pesos.append(curso('Fisioterapia',(2, 1, 1, 3, 2, 1, 1, 1, 3)))
+	pesos.append(curso('Fonoaudiologia',(2, 1, 2, 3, 1, 1, 1, 1, 3)))
+	pesos.append(curso('Geografia',(1, 1, 1, 1, 1, 3, 2, 2, 3)))
+	pesos.append(curso('Geologia',(2, 1, 1, 1, 2, 1, 1, 3, 3)))
+	pesos.append(curso('História',(1, 1, 1, 1, 1, 3, 3, 1, 3)))
+	pesos.append(curso('História da Arte',(1, 2, 1, 1, 1, 2, 3, 1, 3)))
+	pesos.append(curso('Jornalismo',(1, 2, 1, 1, 1, 2, 3, 1, 3)))
+	pesos.append(curso('Letras - Bacharelado',(1, 3, 2, 1, 1, 1, 2, 1, 3)))
+	pesos.append(curso('Matemática - Bacharelado', (2, 1, 2, 1, 1, 1, 1, 3, 3)))
+	pesos.append(curso('Medicina',(1, 1, 2, 3, 2, 1, 1, 1, 3)))
+	pesos.append(curso('Medicina Veterinária',(2, 1, 1, 3, 2, 1, 1, 1, 3)))
+	pesos.append(curso('Museologia',(1, 2, 2, 1, 1, 2, 2, 1, 3)))
+	pesos.append(curso('Música',(1, 2, 2, 1, 1, 1, 3, 1, 3)))
+	pesos.append(curso('Nutrição',(1, 1, 1, 3, 3, 1, 1, 1, 3)))
+	pesos.append(curso('Odontologia',(2, 1, 1, 3, 2, 1, 1, 1, 3)))
+	pesos.append(curso('Pedagogia',(1, 2, 2, 1, 1, 1, 3, 1, 3)))
+	pesos.append(curso('Políticas Públicas',(1, 1, 2, 1, 1, 2, 2, 2, 3)))
+	pesos.append(curso('Psicologia',(1, 2, 2, 2, 1, 1, 2, 1, 3)))
+	pesos.append(curso('Publicidade & Propaganda',(1, 2, 1, 1, 1, 2, 3, 1, 3)))
+	pesos.append(curso('Química',(2, 1, 1, 1, 3, 1, 1, 2, 3)))
+	pesos.append(curso('Relações Internacionais',(1, 1, 2, 1, 1, 2, 2, 2, 3)))
+	pesos.append(curso('Relações Públicas',(1, 2, 1, 1, 1, 2, 3, 1, 3)))
+	pesos.append(curso('Saúde Coletiva',(1, 1, 1, 2, 1, 2, 3, 1, 3)))
+	pesos.append(curso('Serviço Social',(1, 2, 1, 1, 1, 2, 3, 1, 3)))
+	pesos.append(curso('Teatro',(1, 2, 2, 1, 1, 1, 3, 1, 3)))
+	pesos.append(curso('Zootecnia',(1, 1, 1, 3, 2, 1, 1, 2, 3)))
+
+	notas = (Element("fis").element.value, Element("lit").element.value,Element("lin").element.value,Element("bio").element.value,Element("qui").element.value,Element("geo").element.value,Element("his").element.value,Element("mat").element.value,Element("por").element.value)
+	cursos = []
+	for i in pesos:
+		cursos.append(str(i.media(notas)) +" - "+ i.curso)
+		'''print(i.curso +": "+ str(i.media(notas)))'''
+	cursos.sort(reverse = True)
+	for x, i in enumerate(cursos):
+		result.innerText = result.innerText + (str(x+1) + '° - ' + i)+'\n'
+
+
+
+</py-script>
+
+
+
+</html>
+
+
+
+
